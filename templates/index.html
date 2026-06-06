@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAKE NEWS DETECTOR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: 'Poppins', sans-serif;background: url('/static/newspaper.jpg') no-repeat center center fixed; background-size: cover; color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.55); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px;
+    }
+
+    h1 {
+      font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-shadow: 2px 2px 5px #000;
+    }
+
+    .buttons {
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px; font-size: 16px; margin: 0 10px; border: none; border-radius: 8px; cursor: pointer; background: #f0f0f0; color: #333; font-weight: bold;
+    }
+
+    .input-section {
+      display: flex; justify-content: center; align-items: center; background: #fff; border-radius: 40px; overflow: hidden; width: 90%; max-width: 700px; margin-bottom: 20px;
+    }
+
+    .input-section input[type="text"] {
+      border: none; padding: 15px 20px; font-size: 16px; flex: 1; outline: none; border-radius: 40px 0 0 40px;
+    }
+
+    .input-section button {
+      border: none; padding: 15px 25px; background: #333; color: white; font-size: 16px; border-radius: 0 40px 40px 0; cursor: pointer;
+    }
+
+    .result {
+      font-size: 24px; font-weight: bold; margin-top: 10px; text-shadow: 1px 1px 2px #000;
+    }
+
+    .footer {
+      margin-top: 40px; width: 100%;background: rgba(0, 0, 0, 0.8); padding: 20px; text-align: center; font-size: 14px;
+    }
+
+    .footer p, .footer a {
+      color: #ccc; margin: 5px;
+    }
+
+    .footer strong {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>FAKE NEWS DETECTOR</h1>
+
+    <div class="buttons">
+      <button>For Article</button>
+      <button>For URL</button>
+    </div>
+
+    <form method="post">
+      <div class="input-section">
+        <input type="text" name="news_text" placeholder="Enter your text here.." required />
+        <button type="submit">Predict</button>
+      </div>
+    </form>
+
+    {% if prediction is not none and news_text.strip() %}
+  <div class="result">
+    The News is 
+    <span style="color: {% if prediction == 'FAKE' %}red{% else %}limegreen{% endif %};">
+      {{ prediction }}
+    </span>
+  </div>
+{% endif %}
+
+    <div class="footer">
+      <p><strong>ABOUT ME</strong><br>
+      @ KRITIKA<br>
+      @ UID: 23BCS11554<br></p>
+      <p>&copy; CHANDIGARH UNIVERSITY, GHARUAN, PUNJAB</p>
+    </div>
+  </div>
+</body>
+</html>
